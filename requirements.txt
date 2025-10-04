@@ -1,0 +1,16 @@
+pandas
+numpy
+torch
+unsloth
+transformers
+datasets
+peft
+accelerate
+bitsandbytes
+scikit-learn
+joblib
+tqdm
+matplotlib
+seaborn
+huggingface_hub
+python-dotenv
