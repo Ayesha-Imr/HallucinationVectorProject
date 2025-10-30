@@ -18,9 +18,16 @@ ENVIRONMENT = "local"
 # -----------------------------------------------------------------------------
 # FILE PATHS
 # -----------------------------------------------------------------------------
-# For Colab, this assumes your Google Drive is mounted at /content/drive
-BASE_DIR = "/content/drive/MyDrive/"
-PROJECT_DIR = os.path.join(BASE_DIR, "HallucinationVectorProject")
+# Set paths based on environment
+if ENVIRONMENT == "colab":
+    # For Colab, this assumes your Google Drive is mounted at /content/drive
+    BASE_DIR = "/content/drive/MyDrive/"
+    PROJECT_DIR = os.path.join(BASE_DIR, "HallucinationVectorProject")
+elif ENVIRONMENT == "local":
+    # For local execution (Lambda Labs, local machine, etc.)
+    PROJECT_DIR = "/home/ubuntu/HallucinationVectorProject"
+else:
+    raise ValueError(f"Unknown ENVIRONMENT: {ENVIRONMENT}. Must be 'colab' or 'local'.")
 
 # Subdirectories for organizing the project
 DATA_DIR = os.path.join(PROJECT_DIR, "data")
