@@ -13,7 +13,7 @@ import os
 # -----------------------------------------------------------------------------
 # Set to 'colab' to use Google Colab's specific features (e.g., userdata for secrets)
 # Set to 'local' to use a local environment (e.g., .env file for secrets)
-ENVIRONMENT = "colab"
+ENVIRONMENT = "local"
 
 # -----------------------------------------------------------------------------
 # FILE PATHS
