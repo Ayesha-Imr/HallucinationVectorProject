@@ -27,7 +27,8 @@ if config.ENVIRONMENT == 'local':
 elif config.ENVIRONMENT == 'colab':
     from google.colab import userdata
 
-from unsloth import FastLanguageModel
+# NOTE: Commented out to avoid Unsloth import errors when only using judging functions
+# from unsloth import FastLanguageModel
 from huggingface_hub import HfApi, CommitOperationAdd
 
 
@@ -66,6 +67,14 @@ def load_model_and_tokenizer():
     Returns:
         tuple: A tuple containing the loaded model and tokenizer.
     """
+    try:
+        from unsloth import FastLanguageModel
+    except ImportError as e:
+        raise ImportError(
+            "FastLanguageModel import failed. This function requires Unsloth to be properly installed. "
+            "If you only need judging functions, you don't need to call this function."
+        ) from e
+    
     print(f"Loading model and tokenizer: {config.MODEL_NAME}")
     model, tokenizer = FastLanguageModel.from_pretrained(
         model_name=config.MODEL_NAME,
