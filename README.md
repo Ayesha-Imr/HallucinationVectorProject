@@ -320,10 +320,11 @@ We apply this framework to hallucination by:
 
 This project underwent extensive iteration to find the optimal configuration.
 
-#### Ablation 1: Basic Fixed Steering (FAILED)
+#### Ablation 1: Risk-Gated with Low Threshold (FAILED)
 
 **Configuration:**
-- All prompts steered with fixed α = -1.0
+- Risk-based routing: Steer if `risk_score >= τ_low` (0.0109, 50th percentile)
+- Fixed α = -30 for high-risk prompts (~50% of prompts steered)
 - Steering applied to all tokens
 
 **Results (TruthfulQA):**
@@ -332,17 +333,17 @@ This project underwent extensive iteration to find the optimal configuration.
 - **Hallucination Rate:** Increased from 61.75% to 64.18%
 - **Latency Increase:** +21.58%
 
-**Conclusion:** Fixed, full-sequence steering was too aggressive, degraded performance
+**Conclusion:** Threshold too aggressive (steering ~50% of prompts), performance degraded despite risk-gating
 
 **Notebook:** `Ablation1_TRUTHFULQA_EVALS_project2_methdology2_hallucination_vector.ipynb`
 
 ---
 
-#### Ablation 2: Risk-Gated Steering (PARTIAL SUCCESS)
+#### Ablation 2: Risk-Gated with High Threshold (PARTIAL SUCCESS)
 
 **Configuration:**
-- Risk-based routing: Only steer if `risk_score > τ_high`
-- Fixed α = -1.0 for high-risk prompts
+- Risk-based routing: Steer if `risk_score >= τ_high` (0.0208, 75th percentile)
+- Fixed α = -3.0 for high-risk prompts (~15% of prompts steered)
 - Steering applied to all tokens
 
 **Results (TruthfulQA):**
@@ -351,7 +352,7 @@ This project underwent extensive iteration to find the optimal configuration.
 - **Hallucination Rate:** Decreased from 61.43% to 57.69%
 - **Latency Increase:** +16.32% ❌ (too high)
 
-**Conclusion:** Risk-gating helped, but latency still exceeded budget
+**Conclusion:** Higher threshold (τ_high vs τ_low) reduced steering burden, improved accuracy, but latency still exceeded budget
 
 **Notebook:** `Ablation2_TRUTHFULQA_EVALS_project2_methdology2_hallucination_vector.ipynb`
 

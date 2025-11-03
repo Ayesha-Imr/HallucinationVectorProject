@@ -4,3 +4,4 @@ venv/
 __pycache__/
 unsloth_compiled_cache/
 activations/
+PAPER/
