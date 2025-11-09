@@ -5,3 +5,5 @@ __pycache__/
 unsloth_compiled_cache/
 activations/
 PAPER/
+.claude/
+CLAUDE.md
