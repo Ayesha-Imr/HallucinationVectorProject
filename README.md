@@ -1080,56 +1080,7 @@ Located in: `results/llama-3.1-8b-4bit/`
 ✅ Train/test splits preserved in CSVs  
 ✅ Evaluation prompts saved (validation_set_truthfulqa.csv, final_test_set_truthfulqa.csv)
 
-### 9.3 For Paper Authors
-
-**Suggested Paper Structure:**
-
-1. **Introduction**
-   - Hallucination problem statement
-   - Limitations of existing approaches
-   - Contribution: Adaptive, selective steering
-
-2. **Related Work**
-   - Persona Vectors (Chen et al.)
-   - Activation steering (Panickssery et al.)
-   - Hallucination mitigation techniques
-
-3. **Methodology**
-   - Section 4 of this document (copy/adapt)
-   - Include ablation timeline (Section 6.1)
-
-4. **Experimental Setup**
-   - Datasets: TruthfulQA, ARC, MedChat-QA
-   - Model: Llama-3.1-8B
-   - Judge: Gemini-2.5-Flash / GPT-4o
-
-5. **Results**
-   - Section 7 tables
-   - Ablation comparison (Section 6.3)
-   - Cross-domain evaluation (Section 7.2-7.3)
-
-6. **Analysis**
-   - Why dynamic alpha works (risk-proportional intervention)
-   - Why selective N works (early token importance)
-   - When guardrail is/isn't suitable (Section 7.4)
-
-7. **Limitations & Future Work**
-   - Model size (8B → 70B+)
-   - Multi-domain robustness
-   - Online risk threshold adaptation
-
-**Key Figures to Include:**
-
-1. Figure 1: System architecture (Section 3.1 diagram)
-2. Figure 2: Ablation timeline (Section 6.1)
-3. Figure 3: TruthfulQA results (bar chart: accuracy, hallucination, latency)
-4. Figure 4: Alpha tuning curve (from Notebook 3)
-5. Figure 5: ROC curve for risk classifier (from Notebook 2)
-6. Figure 6: Cross-domain performance comparison
-7. Figure 7: Path distribution (fast vs. steer)
-8. Figure 8: Latency breakdown by path
-
-### 9.4 Common Troubleshooting
+### 9.3 Common Troubleshooting
 
 **Issue:** "RuntimeError: CUDA out of memory"
 - **Solution:** Use 4-bit quantization, reduce batch size, clear cache between runs
